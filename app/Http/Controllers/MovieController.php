@@ -19,7 +19,7 @@ class MovieController extends Controller
         $movie1 = DB::select("SELECT m.id AS movie_id, m.image, m.movie_name_vn, m.release_date FROM movie m
                 INNER JOIN movie_genre mg ON m.id=mg.id_movie
                 INNER JOIN genre g ON mg.id_genre=g.id
-                WHERE mg.status=1 AND g.id=?
+                WHERE m.status=1 AND g.id=?
                 ORDER BY m.release_date DESC
                 LIMIT 12;", [$id]);
         return view("movie.show", compact("movie1"));
