@@ -41,8 +41,8 @@ class MovieController2 extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('covers', $fileName, 'public'); //$request->file('image')->store('covers', 'public');
-            $data['image'] = 'storage/' . $path;
+            $path = $file->storeAs('', $fileName, 'public'); //$request->file('image')->store('covers', 'public');
+            $data['image'] = $path;
         }
         DB::table('movie')->insert($data);
         return redirect()->route('movielist')->with('status', 'Thêm phim thành công');

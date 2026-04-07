@@ -32,15 +32,15 @@
             <tbody>
                 @foreach($data as $row)
                 <tr>
-                    <td><img src="{{$row->image_link??asset($row->image)}}" width="50px"></td>
+                    <td><img src="{{$row->image_link??asset('storage/'.$row->image)}}" width="50px"></td>
                     <td>{{$row->movie_name_vn}}</td>
-                    <td>{{$row->tagline_vn != '' ? explode('.',$row->tagline_vn)[0]:""}}</td>
+                    <td>{{$row->tagline_vn != '' ? explode('.',$row->tagline_vn)[0].'.':""}}</td>
                     <td>{{$row->release_date}}</td>
                     <td>{{$row->vote_average}}</td>
                     <td>
                         <div class="btn-group">
                             <form method='post' action="{{route('moviedelete')}}" onsubmit="return confirm('Bạn có chắc chắn muốn xóa cuốn sách này không?');">
-                                <a href="url('phim/$row->id" class='btn btn-sm btn-primary'>Xem</a>
+                                <a href='{{url("phim/$row->id")}}'' class=' btn btn-sm btn-primary'>Xem</a>
                                 <input type='hidden' value='{{$row->id}}' name='id'>
                                 <input type='submit' class='btn btn-sm btn-danger' value='Xóa'>
                                 {{ csrf_field() }}

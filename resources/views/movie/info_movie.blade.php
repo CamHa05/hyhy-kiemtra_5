@@ -6,7 +6,7 @@
     <p style="text-transform: uppercase; font-size:24px">{{$row->movie_name_vn}}</p>
     <div class="movie-info">
         <div>
-            <img src="{{asset('storage/'.$row->image)}}" alt="" style="width: 100%; height: 300px; object-fit: cover;">
+            <img src="{{asset('storage/'.$row->image)??$row->image_link}}" alt="" style="width: 100%; height: 300px; object-fit: cover;">
         </div>
         <div>
             Ngày phát hành: <b>{{$row->release_date}}</b><br>
