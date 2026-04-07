@@ -34,7 +34,8 @@
 
         .movie-info {
             display: grid;
-            grid-template-columns: repeat(2, 30% 70%);
+            grid-template-columns: 1fr 2fr;
+            gap:20px;
         }
 
         .banner {

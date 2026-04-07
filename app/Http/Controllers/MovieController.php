@@ -16,7 +16,7 @@ class MovieController extends Controller
 
     public function show($id)
     {
-        $movie1 = DB::select("SELECT * FROM movie m
+        $movie1 = DB::select("SELECT m.id AS movie_id, m.image, m.movie_name_vn, m.release_date FROM movie m
                 INNER JOIN movie_genre mg ON m.id=mg.id_movie
                 INNER JOIN genre g ON mg.id_genre=g.id
                 WHERE g.id=?
@@ -28,5 +28,12 @@ class MovieController extends Controller
     {
         $movie2 = DB::select("SELECT * FROM movie WHERE id=?", [$id]);
         return view("movie.info_movie", compact("movie2"));
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        $movie3 = DB::select("SELECT * FROM movie WHERE movie_name_vn LIKE ?", ['%' . $keyword . '%']);
+        return view("movie.search", compact("movie3"));
     }
 }
