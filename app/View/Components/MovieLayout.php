@@ -11,7 +11,7 @@ class MovieLayout extends Component
     /**
      * Create a new component instance.
      */
-     public $genre;
+    public $genre;
  
     public function __construct()
     {
