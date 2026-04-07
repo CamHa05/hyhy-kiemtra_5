@@ -8,8 +8,25 @@ use Illuminate\Support\Facades\DB;
 class MovieController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         $movie = DB::select("SELECT * FROM movie WHERE popularity > 450 AND vote_average > 7 ORDER BY release_date DESC LIMIT 12;");
-        return view("movie.index",compact("movie"));
+        return view("movie.index", compact("movie"));
+    }
+
+    public function show($id)
+    {
+        $movie1 = DB::select("SELECT * FROM movie m
+                INNER JOIN movie_genre mg ON m.id=mg.id_movie
+                INNER JOIN genre g ON mg.id_genre=g.id
+                WHERE g.id=?
+                ORDER BY m.release_date DESC
+                LIMIT 12;", [$id]);
+        return view("movie.show", compact("movie1"));
+    }
+    public function info_movie($id)
+    {
+        $movie2 = DB::select("SELECT * FROM movie WHERE id=?", [$id]);
+        return view("movie.info_movie", compact("movie2"));
     }
 }
