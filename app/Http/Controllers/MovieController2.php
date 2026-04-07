@@ -9,7 +9,7 @@ class MovieController2 extends Controller
 {
     function movieList()
     {
-        $data = DB::table('movie')->get();
+        $data = DB::table('movie')->where('status',1)->get();
         return view('movie-manage.movie-list', compact('data'));
     }
     function movieCreate()
@@ -49,7 +49,7 @@ class MovieController2 extends Controller
     }
     function movieDelete(Request $request)
     {
-        DB::table('movie')->where("id", $request->input('id'))->delete();
-        return redirect()->route('movielist')->with('status', "Xoá thành công");
+        DB::table('movie')->where("id", $request->input('id'))->update(['status'=>0]);
+        return redirect()->route('movielist')->with('status', "Xoá mềm thành công");
     }
 }
